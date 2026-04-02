@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1e3a8a',
+            secondary: '#dc2626',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="min-h-screen pt-32 pb-20 bg-gray-50 flex items-center">
+  <div class="max-w-xl mx-auto w-full px-4">
+    <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-gray-100">
+      
+      <div class="text-center mb-10">
+        <h1 class="text-3xl font-black text-green-600 mb-2">Volunteer Sign Up</h1>
+        <p class="text-gray-500 font-medium">Tell us how you'd like to help the campaign.</p>
+      </div>
+
+      <form id="volunteer-signup-form" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">First Name</label>
+            <input type="text" required class="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-green-600 outline-none transition">
+          </div>
+          <div>
+            <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Last Name</label>
+            <input type="text" required class="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-green-600 outline-none transition">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Email Address</label>
+          <input type="email" required class="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-green-600 outline-none transition">
+        </div>
+
+        <div>
+          <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">I am interested in...</label>
+          <div class="grid grid-cols-1 gap-3">
+            <label class="flex items-center p-4 border border-gray-100 rounded-2xl cursor-pointer hover:bg-blue-50 transition group">
+              <input type="checkbox" class="w-5 h-5 accent-green-600">
+              <span class="ml-3 font-bold text-gray-700 group-hover:text-green-600">Door-to-Door Canvassing</span>
+            </label>
+            <label class="flex items-center p-4 border border-gray-100 rounded-2xl cursor-pointer hover:bg-blue-50 transition group">
+              <input type="checkbox" class="w-5 h-5 accent-green-600">
+              <span class="ml-3 font-bold text-gray-700 group-hover:text-green-600">Phone Banking / Texting</span>
+            </label>
+            <label class="flex items-center p-4 border border-gray-100 rounded-2xl cursor-pointer hover:bg-blue-50 transition group">
+              <input type="checkbox" class="w-5 h-5 accent-green-600">
+              <span class="ml-3 font-bold text-gray-700 group-hover:text-green-600">Event Logistics & Setup</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-5 bg-green-600 text-white font-black rounded-2xl text-lg hover:bg-blue-800 shadow-lg transition-all active:scale-95">
+          Submit My Application
+        </button>
+      </form>
+
+      <p class="mt-6 text-center text-xs text-gray-400 leading-relaxed px-4">
+        By signing up, you agree to receive campaign updates. You can unsubscribe at any time.
+      </p>
+    </div>
+  </div>
+</section>
+</body>
+</html>

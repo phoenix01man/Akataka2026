@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Campaign 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: {  green-600: '#1e3a8a', 'secondary': '#dc2626' } } }
+    }
+  </script>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<style>
+  /* Styling the editor to match your modern admin look */
+  .ql-container {
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    background: #f9fafb; /* Matches your gray-50 */
+    font-family: inherit;
+    font-size: 1.125rem;
+  }
+  .ql-toolbar {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    background: white;
+    border-color: #f3f4f6 !important;
+  }
+  .ql-editor {
+    min-height: 300px;
+  }
+</style>
+</head>
+<body class="bg-gray-100 flex h-screen overflow-hidden">
+
+  <aside class="w-64 bg-black text-white flex-shrink-0 flex flex-col">
+    <div class="p-6 text-2xl font-black border-b border-black/20 text-center text-white/90">
+       Campaign
+      HQ <span class="text-yellow-600">PANEL</span>
+    </div>
+    <nav class="flex-1 p-4 space-y-2">
+      <button onclick="showTab('stats')" class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-black hover:text-yellow-600 transition font-bold">
+        📊 Dashboard
+      </button>
+      <button onclick="showTab('create-post')" class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-black hover:text-yellow-600 transition font-bold">
+        ✍️ Create Post
+      </button>
+      <button onclick="showTab('volunteers')" class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-black hover:text-yellow-600 transition font-bold">
+        🙋 Volunteer Database
+      </button>
+      <button onclick="showTab('profile')" class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-black hover:text-yellow-600 transition font-bold">
+        👤 Edit Profile
+      </button>
+    </nav>
+    <div class="p-4 border-t border-blue-800">
+      <a href="index.html" class="block text-center text-sm opacity-70 hover:opacity-100">Back to Website</a>
+    </div>
+  </aside>
+
+  <main class="flex-1 flex flex-col overflow-y-auto">
+    
+    <header class="bg-white shadow-sm p-6 flex justify-between items-center">
+      <h2 id="greeting" class="text-xl font-bold text-gray-800">Welcome, Admin</h2>
+      <div class="flex items-center gap-3">
+        <img id="header-avatar" src="https://ui-avatars.com/api/?name=Admin" class="w-10 h-10 rounded-full border">
+        <button class="text-gray-500 hover:text-red-600 font-bold">Logout</button>
+      </div>
+    </header>
+
+    <div class="p-8">
+      
+      <section id="tab-stats" class="tab-content">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl shadow-sm border">
+            <p class="text-gray-500 font-bold uppercase text-xs">Total Posts</p>
+            <h3 class="text-3xl font-black text-green-600">12</h3>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-sm border">
+            <p class="text-gray-500 font-bold uppercase text-xs">Volunteers</p>
+            <h3 class="text-3xl font-black text-green-600">1,240</h3>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-sm border">
+            <p class="text-gray-500 font-bold uppercase text-xs">Comments</p>
+            <h3 class="text-3xl font-black text-green-600">48</h3>
+          </div>
+        </div>
+
+        
+      </section>
+
+      <section id="tab-volunteers" class="tab-content hidden animate-fade-in">
+          <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+            
+            <div class="p-8 border-b border-gray-50 bg-gray-50/50 flex flex-col md:flex-row justify-between items-center gap-4">
+              <div>
+                <h3 class="text-2xl font-black text-black">Volunteer Management</h3>
+                <p class="text-sm text-gray-500">Manage and contact your community supporters.</p>
+              </div>
+              <div class="relative w-full md:w-72">
+                <input type="text" id="volunteer-search" onkeyup="filterVolunteers()" placeholder="Search by name or role..." 
+                      class="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary outline-none text-sm">
+                <svg class="w-4 h-4 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-gray-50 text-gray-400 text-xs font-black uppercase tracking-widest">
+                    <th class="px-8 py-4">Name</th>
+                    <th class="px-8 py-4">Interest</th>
+                    <th class="px-8 py-4">Status</th>
+                    <th class="px-8 py-4 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="volunteer-table-body" class="divide-y divide-gray-50">
+                  </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      <section id="tab-create-post" class="tab-content hidden">
+        <div class="max-w-2xl bg-white p-8 rounded-2xl shadow-sm border">
+          <h3 class="text-2xl font-bold mb-6">Create New Blog Article</h3>
+          <form class="space-y-4">
+            <input type="text" placeholder="Article Title" class="w-full p-3 bg-gray-50 rounded-lg border focus:ring-2 focus:ring-green-600 outline-none">
+            
+            <div class="border-2 border-dashed border-gray-200 rounded-xl p-8 text-center hover:border-green-600 transition cursor-pointer">
+              <input type="file" id="post-image" class="hidden" accept="image/*" onchange="previewImage(event, 'post-preview')">
+              <label for="post-image" class="cursor-pointer">
+                <span class="text-gray-500">Click to upload featured image</span>
+                <img id="post-preview" class="mt-4 max-h-40 mx-auto rounded hidden">
+              </label>
+            </div>
+
+            <div>
+              <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Article Body</label>
+              <div id="editor-container">
+                </div>
+              <input type="hidden" name="content" id="blog-content-hidden">
+            </div>
+            <button type="button" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold hover:bg-yellow-600">Publish to Newsroom</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="tab-profile" class="tab-content hidden">
+        <div class="max-w-2xl bg-white p-8 rounded-2xl shadow-sm border">
+          <h3 class="text-2xl font-bold mb-6">Admin Settings</h3>
+          <div class="space-y-6">
+            <div class="flex items-center gap-6">
+              <img id="profile-preview" src="https://ui-avatars.com/api/?name=Admin" class="w-24 h-24 rounded-full border-4 border-gray-100">
+              <input type="file" id="admin-photo" class="hidden" onchange="updateProfilePhoto(event)">
+              <label for="admin-photo" class="bg-gray-100 px-4 py-2 rounded-lg font-bold cursor-pointer hover:bg-gray-200 transition">Change Photo</label>
+            </div>
+            <input id="admin-name" type="text" placeholder="Admin Name" value="Campaign Manager" class="w-full p-3 bg-gray-50 rounded-lg border outline-none">
+            <button onclick="saveProfile()" class="bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-red-700 transition">Save Profile</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // Tab Switching Logic
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+      document.getElementById('tab-' + tabId).classList.remove('hidden');
+    }
+
+    // Image Preview Utility
+    function previewImage(event, previewId) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        const output = document.getElementById(previewId);
+        output.src = reader.result;
+        output.classList.remove('hidden');
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // Profile Logic
+    function saveProfile() {
+      const name = document.getElementById('admin-name').value;
+      localStorage.setItem('adminName', name);
+      updateGreeting();
+      alert('Profile Updated!');
+    }
+
+    function updateGreeting() {
+      const name = localStorage.getItem('adminName') || 'Admin';
+      const hours = new Date().getHours();
+      let timeGreet = "Good Morning";
+      if (hours >= 12) timeGreet = "Good Afternoon";
+      if (hours >= 17) timeGreet = "Good Evening";
+      
+      document.getElementById('greeting').innerText = `${timeGreet}, ${name} 👋`;
+    }
+
+    function updateProfilePhoto(event) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        const dataURL = reader.result;
+        document.getElementById('profile-preview').src = dataURL;
+        document.getElementById('header-avatar').src = dataURL;
+        localStorage.setItem('adminAvatar', dataURL);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // Sample Data
+const volunteerData = [
+    { name: "Marcus Wright", email: "marcus@email.com", interest: "Phone Banking", status: "Active" },
+    { name: "Sarah Jenkins", email: "s.jenkins@email.com", interest: "Event Setup", status: "Pending" },
+    { name: "David Chen", email: "dchen@email.com", interest: "Yard Signs", status: "Active" },
+    { name: "Elena Rodriguez", email: "elena.r@email.com", interest: "Canvassing", status: "Contacted" }
+];
+
+function renderVolunteers(data) {
+    const tableBody = document.getElementById('volunteer-table-body');
+    tableBody.innerHTML = '';
+
+    data.forEach(person => {
+        const row = `
+            <tr class="hover:bg-blue-50/30 transition-colors group">
+                <td class="px-8 py-5">
+                    <div class="font-bold text-gray-900">${person.name}</div>
+                    <div class="text-xs text-gray-400">${person.email}</div>
+                </td>
+                <td class="px-8 py-5 text-sm text-gray-600 font-medium">
+                    ${person.interest}
+                </td>
+                <td class="px-8 py-5">
+                    <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter 
+                        ${person.status === 'Active' ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600'}">
+                        ${person.status}
+                    </span>
+                </td>
+                <td class="px-8 py-5 text-right">
+                    <button class="text-black font-bold text-xs hover:text-red-600 transition">Email</button>
+                    <span class="mx-2 text-gray-200">|</span>
+                    <button class="text-gray-400 font-bold text-xs hover:text-red-600 transition">Remove</button>
+                </td>
+            </tr>
+        `;
+        tableBody.innerHTML += row;
+    });
+}
+
+function filterVolunteers() {
+    const query = document.getElementById('volunteer-search').value.toLowerCase();
+    const filtered = volunteerData.filter(v => 
+        v.name.toLowerCase().includes(query) || 
+        v.interest.toLowerCase().includes(query)
+    );
+    renderVolunteers(filtered);
+}
+
+    // Initial Setup on Load
+    window.onload = () => {
+      updateGreeting();
+      if(localStorage.getItem('adminAvatar')) {
+        const savedAvatar = localStorage.getItem('adminAvatar');
+        document.getElementById('profile-preview').src = savedAvatar;
+        document.getElementById('header-avatar').src = savedAvatar;
+      }
+    };
+    // Initialize Quill
+var quill = new Quill('#editor-container', {
+  modules: {
+    toolbar: [
+      [{ 'header': [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      ['link', 'clean'] // 'clean' removes formatting
+    ]
+  },
+  placeholder: 'Compose the campaign vision...',
+  theme: 'snow'
+});
+
+// Sync the Editor content to your hidden input before publishing
+function publishPost() {
+    const title = document.getElementById('post-title').value;
+    const category = document.getElementById('post-category').value;
+    
+    // Get the HTML content from Quill
+    const content = quill.root.innerHTML; 
+    document.getElementById('blog-content-hidden').value = content;
+
+    if (!title || quill.getText().trim().length === 0) {
+        alert("Please provide a title and some content!");
+        return;
+    }
+
+    // Logic for your PHP transition
+    console.log("Ready for MySQL:", { title, category, content });
+    
+    alert("Article formatted and ready for the database!");
+}
+  </script>
+</body>
+</html>

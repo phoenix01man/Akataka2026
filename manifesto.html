@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifesto - Campaign 2026</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#1e3a8a', secondary: '#dc2626' } } }
+    }
+  </script>
+  <link rel="stylesheet" href="public/styles/styles.css">
+</head>
+<body>
+    <!-- navbar -->
+    <header>
+      <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+            
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-black tracking-tighter text-green-600">
+                    AKATAKA<span class="text-red-600">2026</span>
+                    </span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-green-600 font-medium transition">About</a>
+                    <a href="#vision" class="text-gray-700 hover:text-green-600 font-medium transition">Vision</a>
+                    <a href="#news" class="text-gray-700 hover:text-green-600 font-medium transition">News</a>
+                    <a href="#volunteer" class="bg-green-600 text-white px-6 py-2.5 rounded-full font-bold hover:bg-green-700 transition shadow-lg shadow-blue-900/20">
+                    Get Involved
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="md:hidden p-2">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                        </button>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-6 space-y-4 shadow-xl">
+            <a href="#about" class="block text-xl font-semibold text-gray-900">About</a>
+            <a href="#vision" class="block text-xl font-semibold text-gray-900">Vision</a>
+            <a href="#news" class="block text-xl font-semibold text-gray-900">News</a>
+            <a href="#volunteer" class="block w-full text-center bg-red-600 text-white py-4 rounded-xl font-bold">Get involved</a>
+        </div>
+        </nav>
+  </header>
+  <!-- hero -->
+   <section class="relative h-[80vh] flex items-center justify-center overflow-hidden bg-blue-900">
+  
+  <div class="absolute inset-0 z-0">
+    <img src="public/image/adc.jpg" 
+         class="w-full h-full object-cover opacity-60 mix-blend-overlay" 
+         alt="Campaign Background">
+    <div class="absolute inset-0 bg-gradient-to-b from-blue-900/80 via-transparent to-white"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
+    <span class="inline-block px-4 py-1.5 mb-6 text-xs font-black tracking-[0.3em] text-white uppercase bg-red-600 rounded-full shadow-lg animate-fade-in-up">
+      Official Platform
+    </span>
+    <h1 class="text-6xl md:text-8xl font-black text-white tracking-tighter mb-6 drop-shadow-2xl">
+      The <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-200">Manifesto</span>
+    </h1>
+    <div class="bg-white/20 p-5">
+        <p class="text-lg text-black font-bold max-w-2xl mx-auto">
+            A bold vision for our community's future, grounded in actionable policies and a commitment to progress.
+        </p>
+    </div>
+   
+    
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7-7-7"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- manifesto -->
+    <section id="manifesto" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="max-w-3xl mb-20">
+      <h1 class="text-5xl font-black text-green-600 mb-6">Our Blueprint for <span class="text-red-600">2026</span></h1>
+      <p class="text-xl text-gray-600 leading-relaxed">
+        A manifesto is more than a list of promises; it is a contract with the people. Here is how we intend to transform our community through bold action and transparent leadership.
+      </p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-16">
+      
+      <aside class="lg:w-1/4">
+        <div class="sticky top-32 space-y-2">
+          <p class="text-xs font-black uppercase tracking-widest text-gray-400 mb-4 px-4">Policy Areas</p>
+          <a href="#economy" class="block px-4 py-3 rounded-xl bg-blue-50 text-green-600 font-bold border-l-4 border-blue-900">Economic Growth</a>
+          <a href="#education" class="block px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-green-600 transition font-medium">Education & Youth</a>
+          <a href="#health" class="block px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-green-600 transition font-medium">Healthcare Access</a>
+          <a href="#safety" class="block px-4 py-3 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-green-600 transition font-medium">Public Safety</a>
+        </div>
+      </aside>
+
+      <div class="lg:w-3/4 space-y-24">
+        
+        <div id="economy" class="scroll-mt-32">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-blue-900 text-white rounded-2xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h2 class="text-3xl font-black text-green-600">Economic Growth & Opportunity</h2>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-gray-50 p-8 rounded-[2rem] border border-gray-100">
+              <h4 class="font-black text-green-600 mb-3">Small Business Grants</h4>
+              <p class="text-gray-600">Establishing a $10M local fund to provide interest-free loans to startups in under-served districts.</p>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-[2rem] border border-gray-100">
+              <h4 class="font-black text-green-600 mb-3">Job Training Centers</h4>
+              <p class="text-gray-600">Partnering with tech firms to build three vocational hubs for rapid re-skilling in the digital economy.</p>
+            </div>
+          </div>
+          
+          <div class="mt-8 p-8 border-l-4 border-red-600 bg-red-50/50 rounded-r-3xl text-gray-700">
+            <p class="italic">"Our goal is 0% unemployment in the district by 2028 through aggressive local investment and deregulation for small vendors."</p>
+          </div>
+        </div>
+
+        <div id="education" class="scroll-mt-32">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 bg-red-600 text-white rounded-2xl flex items-center justify-center shadow-lg">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+            </div>
+            <h2 class="text-3xl font-black text-green-600">Education & Future Leaders</h2>
+          </div>
+          
+          <div class="space-y-6">
+            <div class="group flex items-start gap-6 p-6 rounded-2xl hover:bg-gray-50 transition">
+              <span class="text-4xl font-black text-gray-200 group-hover:text-red-200">01</span>
+              <div>
+                <h4 class="font-bold text-xl text-green-600">Digital Classroom Initiative</h4>
+                <p class="text-gray-600">Supplying every public student with a high-speed tablet and campus-wide fiber optic internet.</p>
+              </div>
+            </div>
+            <div class="group flex items-start gap-6 p-6 rounded-2xl hover:bg-gray-50 transition border-t border-gray-100">
+              <span class="text-4xl font-black text-gray-200 group-hover:text-red-200">02</span>
+              <div>
+                <h4 class="font-bold text-xl text-green-600">Teacher Housing Subsidy</h4>
+                <p class="text-gray-600">Reducing the cost of living for our educators through designated housing stipends and tax breaks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

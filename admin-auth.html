@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HQ Login | AKATAKA 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#1e3a8a', secondary: '#dc2626' } } }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 h-screen flex items-center justify-center overflow-hidden">
+
+  <div class="w-full max-w-5xl h-[600px] flex bg-white shadow-2xl rounded-[3rem] overflow-hidden m-4">
+    
+    <div class="hidden lg:flex lg:w-1/2 bg-green-600 p-12 flex-col justify-between text-white relative">
+      <div class="z-10">
+        <div class="text-2xl font-black mb-12 uppercase tracking-tighter">AKATAKA <span class="text-black">2026</span></div>
+        <h1 class="text-4xl font-black leading-tight mb-4">Command Center Access</h1>
+        <p class="text-blue-200 text-lg">Manage the manifesto, coordinate volunteers, and broadcast the vision to the world.</p>
+      </div>
+      <div class="z-10 text-sm text-blue-300 font-medium">© 2026 Campaign Strategy Office. Authorized personnel only.</div>
+      
+      <div class="absolute bottom-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mb-20"></div>
+    </div>
+
+    <div class="w-full lg:w-1/2 p-8 md:p-16 flex flex-col justify-center">
+      
+      <div id="login-box">
+        <h2 class="text-3xl font-black text-gray-900 mb-2">Welcome Back</h2>
+        <p class="text-gray-500 mb-8 font-medium text-sm">Please enter your credentials to access the HQ.</p>
+        
+        <form class="space-y-4" onsubmit="handleLogin(event)">
+          <div>
+            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Email</label>
+            <input type="email" required class="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-primary outline-none transition">
+          </div>
+          <div>
+            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Password</label>
+            <input type="password" required class="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-primary outline-none transition">
+          </div>
+          <button class="w-full py-4 bg-green-600 text-white font-black rounded-2xl shadow-lg hover:bg-green-700 transition-all active:scale-95">
+            Log In
+          </button>
+        </form>
+        <p class="mt-6 text-center text-sm font-bold text-gray-400">
+          New admin? <button onclick="toggleAuth()" class="text-green-600 hover:text-red-600 transition">Request an Account</button>
+        </p>
+      </div>
+
+      
+
+      <div id="signup-box" class="hidden">
+        <h2 class="text-3xl font-black text-gray-900 mb-2">Register Admin</h2>
+        <p class="text-gray-500 mb-8 font-medium text-sm">Fill out the form to request HQ access.</p>
+        
+        <form class="space-y-4" onsubmit="handleSignup(event)">
+          <div>
+            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Full Name</label>
+            <input type="text" required class="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-primary outline-none transition">
+          </div>
+          <div>
+            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Staff ID / Role</label>
+            <input type="text" placeholder="e.g. Press Secretary" required class="w-full px-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-primary outline-none transition">
+          </div>
+          <div>
+            <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Profile Picture</label>
+            <input type="file" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-green-600 file:text-white hover:file:bg-green-700 transition cursor-pointer">
+          </div>
+          <button class="w-full py-4 bg-green-600 text-white font-black rounded-2xl shadow-lg hover:bg-green-700 transition-all active:scale-95">
+            Create Account
+          </button>
+        </form>
+        <p class="mt-6 text-center text-sm font-bold text-gray-400">
+          Already have access? <button onclick="toggleAuth()" class="text-green-600 hover:text-red-600 transition">Log In Here</button>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="success-alert" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-green-600/90 backdrop-blur-sm animate-fade-in">
+  <div class="bg-white rounded-[3rem] p-10 max-w-sm w-full text-center shadow-2xl transform transition-all scale-95 animate-zoom-in">
+    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+    
+    <h3 class="text-2xl font-black text-gray-900 mb-2">Request Sent!</h3>
+    <p class="text-gray-500 font-medium mb-8">Your ID has been uploaded. An administrator will verify your account shortly.</p>
+    
+    <button onclick="closeAlertAndLogin()" class="w-full py-4 bg-green-600 text-white font-black rounded-2xl hover:bg-green-700 shadow-lg transition-all active:scale-95">
+      Return to Login
+    </button>
+  </div>
+</div>
+
+  <script>
+    // Toggle between Login and Signup
+    function toggleAuth() {
+      const loginBox = document.getElementById('login-box');
+      const signupBox = document.getElementById('signup-box');
+      loginBox.classList.toggle('hidden');
+      signupBox.classList.toggle('hidden');
+    }
+
+    // Logic for redirection
+    function handleLogin(e) {
+      e.preventDefault();
+      // Simulate authentication success
+      window.location.href = 'admin.html';
+    }
+
+    function handleSignup(e) {
+    e.preventDefault();
+    
+    // 1. Show the custom alert
+    document.getElementById('success-alert').classList.remove('hidden');
+    
+    // 2. Clear the form data
+    e.target.reset();
+    document.getElementById('auth-preview').classList.add('hidden');
+    document.getElementById('auth-prompt').classList.remove('hidden');
+}
+
+function closeAlertAndLogin() {
+    // 1. Hide the alert
+    document.getElementById('success-alert').classList.add('hidden');
+    
+    // 2. Switch the form back to Login mode
+    toggleAuth(); 
+}
+  </script>
+</body>
+</html>
